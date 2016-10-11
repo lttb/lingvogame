@@ -6,6 +6,7 @@ def main():
     args = IO.IN()
 
     data = ''
+
     try:
         with open(args.file) as file:
             data = file.read()
