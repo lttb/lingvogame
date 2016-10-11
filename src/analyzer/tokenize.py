@@ -2,4 +2,4 @@ import re
 
 
 def tokenize(text):
-    return [word for word in re.split(r'\W', text) if word]
+    return [word.lower() for word in re.split(r'(?!\b-\b)\W', text) if word]

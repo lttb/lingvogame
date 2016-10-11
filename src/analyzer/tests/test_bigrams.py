@@ -1,5 +1,5 @@
 import unittest
-from ..bigrams import build, frequencyList
+from ..bigrams import bigrams, bigramsWithFrequency
 
 
 class BigramsTest(unittest.TestCase):
@@ -11,7 +11,7 @@ class BigramsTest(unittest.TestCase):
             'снег хрустел'
         ]
 
-        self.assertEqual(expect, build(text, 'снег'))
+        self.assertEqual(expect, bigrams(text, 'снег'))
 
     def testBigramsFindingMultiline(self):
         text = """
@@ -27,7 +27,7 @@ class BigramsTest(unittest.TestCase):
             'снег всегда'
         ]
 
-        self.assertEqual(expect, build(text, 'снег'))
+        self.assertEqual(expect, bigrams(text, 'снег'))
 
     def testBigramsFrequencyList(self):
         text = """
@@ -44,7 +44,7 @@ class BigramsTest(unittest.TestCase):
             'первый снег'
         ]
 
-        self.assertEqual(expect, frequencyList(text, 'снег'))
+        self.assertEqual(expect, bigramsWithFrequency(text, 'снег'))
 
 if __name__ == '__main__':
     unittest.main()

@@ -2,20 +2,25 @@ import functools
 from .tokenize import tokenize
 
 
-def build_list(arr):
+def frequency(arr):
+    result = {}
+
+    if not len(arr):
+        return result
+
     frequencyStep = 1 / len(arr)
 
-    return functools.reduce(lambda acc, word: {
-        ** acc,
-        ** {word: acc.get(word, 0) + frequencyStep}
-    }, arr, {})
+    for word in arr:
+        result[word] = result.get(word, 0) + frequencyStep
+
+    return result
 
 
-def build_list_limited(arr, min_k=0, max_k=1):
-    freq_list = build_list(arr)
+def frequencyLimited(arr, minK=0, maxK=1):
+    freqList = frequency(arr)
 
-    m = max(freq_list.values())
-    min_freq = min_k * m
-    max_freq = max_k * m
+    m = max(freqList.values())
+    minFreq = minK * m
+    maxFreq = maxK * m
 
-    return {k: v for k, v in freq_list.items() if min_freq <= v <= max_freq}
+    return {k: v for k, v in freqList.items() if minFreq <= v <= maxFreq}

@@ -10,8 +10,8 @@ class TokenizeTest(unittest.TestCase):
         self.assertEqual(expect, tokenize(text))
 
     def testTextTokenizingWithNotLetters(self):
-        text = 'кошка,;+ - собака,мышь медведь'
-        expect = ['кошка', 'собака', 'мышь', 'медведь']
+        text = 'кошка,;-+ - собака,мышь медведь кто-то где-нибудь'
+        expect = ['кошка', 'собака', 'мышь', 'медведь', 'кто-то', 'где-нибудь']
 
         self.assertEqual(expect, tokenize(text))
 

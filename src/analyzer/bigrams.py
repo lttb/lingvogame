@@ -1,18 +1,19 @@
 import re
 from operator import itemgetter
-from .frequency import build_list
+from .frequency import frequency
 
 
-def build(text, word):
-    return re.findall(r'(?=(\b\w+\s%(w)s|%(w)s\s\w+))' % {'w': word}, text)
+def bigrams(text, word):
+    return re.findall(
+        r'(?=(\b\w+\s%(w)s\b|\b%(w)s\s\w+\b))' % {'w': word},
+        text
+    )
 
 
-def frequencyList(text, word, count=3):
-    bigrams = build(text, word)
+def bigramsWithFrequency(text, word, count=3):
+    freqList = frequency(bigrams(text, word))
 
-    freq_list = build_list(bigrams)
-
-    return [*map(
+    return [* map(
         lambda pair: pair[0],
-        sorted(freq_list.items(), key=itemgetter(1))[-count:]
+        sorted(freqList.items(), key=itemgetter(1))[-count:]
     )]
